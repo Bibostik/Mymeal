@@ -1,12 +1,18 @@
 import Image from 'next/image'
+import Header from '@/components/Header'
+import CategoriesSection from '@/components/categoriesSection'
+import FoodSection from '@/components/FoodSection'
+import TopRestaurants from '@/components/Restaurants'
+
 
 export default function Home() {
   return (
     <>
 
-    <h1>
-      My Home
-    </h1>
+    <Header/>
+      <CategoriesSection/>
+      <FoodSection/>
+      <TopRestaurants/>
     </>
   )
 }
