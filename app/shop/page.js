@@ -1,7 +1,10 @@
+import FoodSection from '@/components/FoodSection'
 import React from 'react'
 
-export default function shop() {
+export default function page() {
   return (
-    <div>shop</div>
+    <div>
+        <FoodSection limitDisplay={false} />
+    </div>
   )
 }
