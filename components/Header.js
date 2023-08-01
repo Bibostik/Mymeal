@@ -8,7 +8,7 @@ const Home = () => {
         {/* Image Section */}
         <div className="w-full md:w-1/2 mt-6 md:mt-0 order-1 md:order-2">
           <img
-            src="images/jollo-rice.jpg"
+            src="images/jollof.png"
             alt="Hero Image"
             className="w-full h-auto"
           />
