@@ -5,12 +5,13 @@ import FoodSection from '@/components/FoodSection'
 import TopRestaurants from '@/components/Restaurants'
 
 
+
 export default function Home() {
   return (
     <>
     <Header/>
-      <CategoriesSection/>
-      <FoodSection/>
+      <CategoriesSection  limitOnHomepage={true}/>
+      <FoodSection limitDisplay={true}/>
       <TopRestaurants/>
     </>
   )

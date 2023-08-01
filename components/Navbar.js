@@ -44,13 +44,13 @@ const Navbar = () => {
             Categories
           </a>
           <a
-            href="#"
+            href="/restaurants"
             className="text-white hover:text-gray-200 px-4 py-2"
           >
             Restaurants
           </a>
            <a
-            href="#"
+            href="/about"
             className="text-white hover:text-gray-200 px-4 py-2"
           >
             About
