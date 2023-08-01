@@ -1,7 +1,8 @@
+import TopRestaurants from '@/components/Restaurants'
 import React from 'react'
 
 export default function restaurants() {
   return (
-    <div>restaurants</div>
+    <div><TopRestaurants/></div>
   )
 }

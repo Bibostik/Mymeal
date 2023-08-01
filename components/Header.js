@@ -15,7 +15,7 @@ const Home = () => {
         </div>
 
         {/* Text Section */}
-        <div className="w-full md:w-1/2 px-8 order-2 md:order-1">
+        <div className="w-full md:w-1/2 px-8 order-2 md:order-1 py-4">
           <h2 className="text-4xl font-bold text-gray-800 mb-4 py-6">
             Welcome to My Meal Food App
           </h2>
