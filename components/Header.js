@@ -10,7 +10,7 @@ const Home = () => {
           <img
             src="images/jollof.png"
             alt="Hero Image"
-            className="w-full h-auto"
+            className="h-[400px] w-auto"
           />
         </div>
 
