@@ -84,31 +84,31 @@ const Navbar = () => {
       >
         {/* Mobile menu items */}
         <a
-          href="#"
+          href="/"
           className="block mt-4 text-white hover:text-gray-200 px-4 py-2"
         >
           Home
         </a>
         <a
-          href="#"
+          href="/shop"
           className="block mt-4 text-white hover:text-gray-200 px-4 py-2"
         >
           Shop
         </a>
         <a
-          href="#"
+          href="/categories"
           className="block mt-4 text-white hover:text-gray-200 px-4 py-2"
         >
           Categories
         </a>
         <a
-          href="#"
+          href="/restaurants"
           className="block mt-4 text-white hover:text-gray-200 px-4 py-2"
         >
           Restaurants
         </a>
         <a
-          href="#"
+          href="/about"
           className="block mt-4 text-white hover:text-gray-200 px-4 py-2"
         >
           About
