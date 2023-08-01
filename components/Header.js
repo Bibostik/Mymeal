@@ -6,7 +6,7 @@ const Home = () => {
     <div className='bg-slate-200'>
      <div className="container mx-auto flex flex-col md:flex-row items-center justify-between ">
         <div className="w-full md:w-1/2 px-8">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">
+          <h2 className="text-4xl font-bold text-gray-800 mb-4 py-6">
             Welcome to My Meal Food App
           </h2>
           <p className="text-lg text-gray-600 mb-6">
