@@ -5,6 +5,7 @@ import Header from '@/components/Header'
 import FoodSection from '@/components/FoodSection'
 import CategoriesSection from '@/components/categoriesSection'
 import TopRestaurants from '@/components/Restaurants'
+import Footer from "@/components/Footer"
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -18,7 +19,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
       <Navbar/>      
-      {children}     
+      {children}
+      <Footer />    
       </body>
     </html>
   )

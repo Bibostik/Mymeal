@@ -6,7 +6,7 @@ const Footer = () => {
         <div className="container mx-auto px-4 md:px-8">
           <div className="flex justify-between items-center">
             <div>
-              <p className="text-lg font-bold">My Meal- Your  #1 Food App</p>
+              <p className="text-lg font-bold">My Meal - Your  #1 Food App</p>
               <p className="text-sm">Delicious food delivered to your doorstep!</p>
             </div>
             <nav className="space-x-4">
