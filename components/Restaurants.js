@@ -10,7 +10,7 @@ const TopRestaurants = () => {
   useEffect(() => {
     client
       .fetch(
-        `*[_type == "restaurant"] | order(rating desc) [0...4] {
+        `*[_type == "restaurant"] | order(rating desc) [0...8] {
           _id,
           name,
           city,
