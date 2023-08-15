@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { MenuIcon } from '@heroicons/react/outline';
-import { MicrophoneIcon, XIcon, ShoppingBagIcon } from '@heroicons/react/solid';
+import { MicrophoneIcon, XIcon, ShoppingBagIcon, UserIcon } from '@heroicons/react/solid';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -26,13 +26,13 @@ const Navbar = () => {
         </div>
         <div className="hidden md:flex items-center">
           <a
-            href="#"
+            href="/"
             className="text-white hover:text-gray-200 px-4 py-2"
           >
             Home
           </a>
           <a
-            href="/Shop"
+            href="/shop"
             className="text-white hover:text-gray-200 px-4 py-2"
           >
             Shop
@@ -75,6 +75,12 @@ const Navbar = () => {
           >
             <ShoppingBagIcon className="h-6 w-6" />
           </a>
+          <a
+            href="/LoginRegister"
+            className="text-white hover:text-gray-200 ml-4"
+          >
+            <UserIcon className="h-6 w-6" />
+          </a>
         </div>
       </div>
       <div
@@ -82,7 +88,7 @@ const Navbar = () => {
           isMenuOpen ? 'block' : 'hidden'
         } mt-4 md:hidden`}
       >
-        {/* Mobile menu items */}
+      
         <a
           href="/"
           className="block mt-4 text-white hover:text-gray-200 px-4 py-2"
@@ -119,3 +125,5 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
