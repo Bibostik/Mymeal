@@ -7,6 +7,7 @@ import CategoriesSection from '@/components/categoriesSection'
 import TopRestaurants from '@/components/Restaurants'
 import Footer from "@/components/Footer"
 import CartPage from '@/components/cartpage'
+import { CartProvider } from '@/CartContext';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,9 +20,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-      <Navbar />      
+        <CartProvider>   
+      <Navbar /> 
+        
       {children}
+      
       <Footer />    
+
+      </CartProvider>
       </body>
     </html>
   )

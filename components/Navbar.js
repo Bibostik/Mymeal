@@ -4,9 +4,13 @@ import React, { useState } from 'react';
 import { MenuIcon } from '@heroicons/react/outline';
 import { MicrophoneIcon, XIcon, ShoppingBagIcon, UserIcon } from '@heroicons/react/solid';
 
+
+import { useCart } from '@/CartContext'; 
+
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isVoicePrompt, setIsVoicePrompt] = useState(false);
+  const { selectedItems } = useCart();
 
   return (
     <div className="bg-blue-500 py-4 px-6">
