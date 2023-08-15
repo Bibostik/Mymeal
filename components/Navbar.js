@@ -70,7 +70,7 @@ const Navbar = () => {
             )}
           </button>
           <a
-            href="#"
+            href="/cart"
             className="text-white hover:text-gray-200 ml-4"
           >
             <ShoppingBagIcon className="h-6 w-6" />
