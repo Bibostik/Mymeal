@@ -3,9 +3,8 @@
 import React, { useState } from 'react';
 import { MenuIcon } from '@heroicons/react/outline';
 import { MicrophoneIcon, XIcon, ShoppingBagIcon, UserIcon } from '@heroicons/react/solid';
-
-
 import { useCart } from '@/CartContext'; 
+import Link from 'next/link';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -73,12 +72,29 @@ const Navbar = () => {
               </span>
             )}
           </button>
-          <a
+          {/* <a
             href="/cart"
             className="text-white hover:text-gray-200 ml-4"
-          >
-            <ShoppingBagIcon className="h-6 w-6" />
+          ><Link href="/cart" passHref legacyBehavior>
+          <a className="cursor-pointer">
+            <p className="font-semibold">Cart ({selectedItems.length})</p>
+            <p className="text-gray-600">
+              Total: £{selectedItems.reduce((total, item) => total + item.price, 0)}
+            </p>
           </a>
+        </Link>
+            <ShoppingBagIcon className="h-6 w-6" />
+          </a> */}
+          <div className="flex items-center relative">
+          <Link href="/cart" passHref legacyBehavior>
+            <a className="cursor-pointer">
+              <ShoppingBagIcon className="h-6 w-6 text-white" />
+            </a>
+          </Link>
+          <span className="bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center absolute -top-1 -right-1">
+            {selectedItems.length}
+          </span>
+        </div>
           <a
             href="/LoginRegister"
             className="text-white hover:text-gray-200 ml-4"
