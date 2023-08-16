@@ -1,6 +1,7 @@
+"use client"
 import React from 'react';
 import { useCart } from '@/CartContext';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/';
 
 const CheckoutPage = () => {
   const { selectedItems } = useCart();
