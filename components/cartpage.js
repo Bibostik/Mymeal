@@ -56,9 +56,9 @@ const CartPage = () => {
             </button>
 
             <AlertModal
-        isOpen={isAlertOpen}
-        onRequestClose={() => setIsAlertOpen(false)}
-      />
+                    isOpen={isAlertOpen}
+                    onRequestClose={() => setIsAlertOpen(false)}
+            />
           </div>
         </div>
       </div>
