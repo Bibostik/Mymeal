@@ -1,7 +1,8 @@
 'use client'
 import React, {useState, useEffect} from 'react'
 import WelcomePage from '@/components/WelcomePage'
-import CartPage from '@/components/cartpage'
+
+import CartPage from '@/components/WelcomeCartpage'
 
 export default function Welcome() {
         const [userData, setUserData ] = useState(null)

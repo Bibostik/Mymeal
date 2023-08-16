@@ -1,4 +1,3 @@
-"use client"
 import { useCart } from '@/app/CartContext';
 import { useRouter } from 'next/navigation';
 import AlertModal from './alerModal'; 
@@ -18,18 +17,12 @@ const CartPage = () => {
 
   const handleCheckout = () => {
     if (selectedItems.length > 0) {
-      router.push('/LoginRegister'); 
-    } else {    
-     setIsAlertOpen(true);
-    }
-  };
-   const handleCheckoutguest = () => {
-    if (selectedItems.length > 0) {
       router.push('/checkout'); 
     } else {    
      setIsAlertOpen(true);
     }
   };
+
 
   return (
     <div>
@@ -53,14 +46,9 @@ const CartPage = () => {
               className="mt-4 w-full bg-blue-500 text-white font-semibold py-2 rounded-md hover:bg-blue-600 focus:outline-none"
               onClick={handleCheckout}
             >
-              Checkout as a member
+              Checkout
             </button>
-            <button
-                    className="mt-4 w-full border border-blue-500 text-blue-500 font-semibold py-2 rounded-md hover:bg-blue-500 hover:text-white focus:outline-none"
-                    onClick={handleCheckoutguest}
-            >
-                    Checkout as a guest
-            </button>
+           
 
             <AlertModal
                     isOpen={isAlertOpen}
@@ -74,5 +62,3 @@ const CartPage = () => {
 };
 
 export default CartPage;
-
-
