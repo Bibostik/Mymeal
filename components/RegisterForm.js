@@ -27,7 +27,7 @@ const RegisterForm = () => {
       await sanityClient.create(newUser);
       console.log('User added to Sanity schema.');
 
-      setRegistrationSuccess(true); // Set registration success state to true
+      setRegistrationSuccess(true); 
 
     } catch (error) {
       console.error('Registration error:', error.message);

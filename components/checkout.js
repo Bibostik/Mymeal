@@ -1,33 +1,33 @@
-"use client"
+import React from 'react';
 import { useCart } from '@/CartContext';
-import { useRouter } from 'next/navigation';
-import AlertModal from './alerModal'; 
-import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 
-
-
-
-const CartPage = () => {
+const CheckoutPage = () => {
   const { selectedItems } = useCart();
   const router = useRouter();
-  const [isAlertOpen, setIsAlertOpen] = useState(false);
 
   const calculateTotal = () => {
     return selectedItems.reduce((total, item) => total + item.price, 0);
   };
 
-  const handleCheckout = () => {
-    if (selectedItems.length > 0) {
-      router.push('/checkout'); 
-    } else {    
-     setIsAlertOpen(true);
-    }
+  const handlePayment = () => {
+    // Simulate payment processing logic
+    // You can integrate your actual payment processing here
+
+    // Assuming successful payment
+    console.log('Payment successful! Thank you for your order.');
+    // Clear the cart after successful payment
+    // Clearing the cart can be implemented based on your context logic
+    // cart.clearCart();
+
+    // Redirect user to a thank you page or home page
+    router.push('/thank-you');
   };
 
   return (
     <div>
       <div className="container mx-auto p-6 h-screen">
-        <h1 className="text-3xl font-semibold mb-6">Your Cart</h1>
+        <h1 className="text-3xl font-semibold mb-6">Checkout</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             {selectedItems.map((item) => (
@@ -44,14 +44,10 @@ const CartPage = () => {
             </div>
             <button
               className="mt-4 w-full bg-blue-500 text-white font-semibold py-2 rounded-md hover:bg-blue-600 focus:outline-none"
-              onClick={handleCheckout}
+              onClick={handlePayment}
             >
-              Checkout
+              Proceed to Payment
             </button>
-            <AlertModal
-        isOpen={isAlertOpen}
-        onRequestClose={() => setIsAlertOpen(false)}
-      />
           </div>
         </div>
       </div>
@@ -59,6 +55,4 @@ const CartPage = () => {
   );
 };
 
-export default CartPage;
-
-
+export default CheckoutPage;
