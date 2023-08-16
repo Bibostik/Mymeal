@@ -22,7 +22,7 @@ const AboutPage = () => {
               Our mission is to provide you with a wide variety of mouth-watering dishes that cater to your taste and dietary preferences.
             </p>
             <p className="text-gray-600 mb-4">
-              Whether you're a food enthusiast or someone who's conscious about their health, My Meal is here to satisfy your cravings with our delectable offerings.
+              Whether you&apos;re a food enthusiast or someone who&apos;s conscious about their health, My Meal is here to satisfy your cravings with our delectable offerings.
             </p>
             <p className="text-gray-600 mb-4">
               Our team of talented chefs and nutritionists work diligently to ensure that every meal is prepared with the highest quality ingredients and attention to detail.
