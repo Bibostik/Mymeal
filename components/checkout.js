@@ -18,7 +18,7 @@ const CheckoutPage = () => {
     console.log('Payment successful! Thank you for your order.');
     // Clear the cart after successful payment
     // Clearing the cart can be implemented based on your context logic
-    // cart.clearCart();
+    cart.clearCart();
 
     // Redirect user to a thank you page or home page
     router.push('/thank-you');

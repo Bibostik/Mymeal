@@ -1,9 +1,9 @@
 import React from 'react'
-import PaymentPage from '@/components/payment'
+import CheckoutPage from '@/components/checkout'
 
 
 export default function page() {
   return (
-    <div><PaymentPage/></div>
+    <div><CheckoutPage/></div>
   )
 }
