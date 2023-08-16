@@ -11,4 +11,19 @@ const client = createClient({
   ignoreBrowserTokenWarning: true
 });
 
+export const getUserByUsername = async (username) => {
+  try {
+    const query = `*[_type == 'user' && username == $username][0]`;
+    const params = { username };
+    const user = await client.fetch(query, params);
+    return user;
+  } catch (error) {
+    console.error('Error fetching user:', error);
+    return null;
+  }
+};
+
 export default client;
+
+
+
