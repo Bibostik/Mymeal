@@ -8,7 +8,7 @@ const AboutPage = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           <div>
             <img
-              src="/images/foodapp10.png" 
+              src="/images/jollof-rice.jpg" 
               alt="About Us"
               className="rounded-lg shadow-md"
             />
