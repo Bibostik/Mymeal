@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import sanityClient from '@/sanityClient';
 import firebase from '@/firebase';
 
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 const RegisterForm = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -15,7 +15,7 @@ const RegisterForm = () => {
       const auth = getAuth();
       const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
       console.log('User registered successfully.');
-
+      await updateProfile(userCredential.user, {displayName: data.username})
       // Create user entry in Sanity
       const newUser = {
         _type: 'user', 

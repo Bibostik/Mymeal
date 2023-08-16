@@ -1,11 +1,23 @@
-import React from 'react';
+'use client'
+
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 
-const WelcomePage = () => {
+const WelcomePage = (userData) => {
+    // console.log(userData.userData, 'use deets')
+    const [displayName, setDisplayName]= useState('')
+    useEffect(()=>{
+        
+            setDisplayName(userData.userData.displayName)
+        
+    }, [])
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
+    <div>
+    {
+        userData ? (
+<div className="flex flex-col items-center justify-center h-screen">
       <div className="text-center">
-        <h1 className="text-3xl font-semibold mb-4">Welcome,</h1>
+        <h1 className="text-3xl font-semibold mb-4">Welcome, {displayName}</h1>
         <p className="mb-4">
           You are now logged in. You can start shopping and adding items to your cart.
         </p>
@@ -23,6 +35,14 @@ const WelcomePage = () => {
         </Link>
       </div>
     </div>
+        ) : (
+            <p className="mb-4">
+          loading ....
+        </p>
+        )
+    }
+    </div>
+    
   );
 };
 

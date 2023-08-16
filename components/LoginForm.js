@@ -170,13 +170,20 @@ const LoginForm = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const router = useRouter();
-
+  const extractUserCred = (user) =>{
+    const {uid, displayName, email} = user;
+    return {uid, displayName, email}
+  }
   const handleFormSubmit = async (data) => {
     try {
       const auth = getAuth();
       // Authenticate user using Firebase Authentication
-      await signInWithEmailAndPassword(auth, data.email, data.password);
+      const userCredential = await signInWithEmailAndPassword(auth, data.email, data.password);
+      const userData = extractUserCred(userCredential.user)
+      localStorage.setItem('UserData', JSON.stringify(userData))
+      console.log(`user cred` , userData)
       console.log('User logged in successfully.');
+      
       setIsLoggedIn(true);
     } catch (error) {
       console.error('Login error:', error.message);
