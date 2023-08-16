@@ -2,10 +2,14 @@ import { useForm } from 'react-hook-form';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { useState } from 'react'; 
 import firebase from '@/firebase';
+import AlertModal from './alerModal';
+import CartPage from './cartpage';
 
 const LoginForm = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const [isAlertOpen, setIsAlertOpen] = useState(false);
 
   const handleFormSubmit = async (data) => {
     try {
@@ -20,6 +24,10 @@ const LoginForm = () => {
       console.error('Login error:', error.message);
       // Handle login error, show error message to user, etc.
     }
+  };
+
+   const handleAlertClose = () => {
+    setIsAlertOpen(false); // Close the alert modal
   };
 
   return (
@@ -52,7 +60,9 @@ const LoginForm = () => {
           Login
         </button>
       </form>
-      {isLoggedIn && <div className="mt-4 text-green-600">Logged in successfully!</div>}
+      {isLoggedIn && <CartPage />} {/* Show cart once logged in */}
+      <AlertModal isOpen={isAlertOpen} onRequestClose={handleAlertClose} />
+      
     </div>
   );
 };

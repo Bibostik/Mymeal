@@ -46,8 +46,15 @@ const CartPage = () => {
               className="mt-4 w-full bg-blue-500 text-white font-semibold py-2 rounded-md hover:bg-blue-600 focus:outline-none"
               onClick={handleCheckout}
             >
-              Checkout
+              Checkout as a member
             </button>
+            <button
+                    className="mt-4 w-full border border-blue-500 text-blue-500 font-semibold py-2 rounded-md hover:bg-blue-500 hover:text-white focus:outline-none"
+                    onClick={handleCheckout}
+            >
+                    Checkout as a guest
+            </button>
+
             <AlertModal
         isOpen={isAlertOpen}
         onRequestClose={() => setIsAlertOpen(false)}
