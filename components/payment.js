@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 
-import { useCart } from '@/CartContext';
+import { useCart } from '@/app/CartContext';
 import { useRouter } from 'next/navigation';
 
 const PaymentPage = () => {

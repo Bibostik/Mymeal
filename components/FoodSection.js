@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import client from '@/sanityClient';
-import { useCart } from '@/CartContext'; // Adjust the path
+import { useCart } from '@/app/CartContext'; // Adjust the path
 
 const FoodSection = () => {
   const [foodItems, setFoodItems] = useState([]);

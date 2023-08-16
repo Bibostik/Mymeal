@@ -1,5 +1,5 @@
 "use client"
-import { useCart } from '@/CartContext';
+import { useCart } from '@/app/CartContext';
 import { useRouter } from 'next/navigation';
 import AlertModal from './alerModal'; 
 import React, { useState } from 'react';

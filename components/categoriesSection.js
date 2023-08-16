@@ -18,7 +18,7 @@ const CategoriesSection = () => {
   const visibleCategories = showMore ? categories : categories.slice(0, 8);
 
   return (
-    <div className="container mx-auto mt-10 px-8 h-screen">
+    <div className="container mx-auto mt-10 px-8 ">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-3xl font-bold">Top categories</h2>
         {!showMore && categories.length > 8 && (
