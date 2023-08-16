@@ -1,6 +1,6 @@
 import React from 'react';
 import { useCart } from '@/CartContext';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 const CheckoutPage = () => {
   const { selectedItems } = useCart();
