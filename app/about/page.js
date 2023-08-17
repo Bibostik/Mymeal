@@ -1,8 +1,12 @@
 import React from 'react'
-import AboutPage from '@/components/about'
+import AboutHero from '@/components/aboutHero'
 
 export default function About() {
   return (
-    <div><AboutPage/></div>
+    <>
+    
+    <AboutHero />
+    
+    </>
   )
 }

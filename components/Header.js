@@ -1,6 +1,5 @@
 import React from 'react';
 import Header from '../components/Header';
-import Link from 'next/link';
 
 const Home = () => {
   return (
@@ -23,11 +22,15 @@ const Home = () => {
           <p className="text-lg text-gray-600 mb-6">
             Discover the best Food products and Meals here!
           </p>
-          <Link href="/shop" passHref legacyBehavior>
-        <a className="bg-blue-500 text-white font-bold px-6 py-2 rounded-md focus:outline-none">
-          Explore Now
-        </a>
-      </Link>
+          <a
+            href="/shop"
+            className="text-white hover:text-gray-200 px-4 py-2"
+          >
+             <button className="bg-blue-500 text-white font-bold px-6 py-2 rounded-md focus:outline-none">
+            Explore Now
+          </button>
+          </a>
+         
         </div>
       </div>
     </div>

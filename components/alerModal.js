@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Modal from 'react-modal';
 
@@ -15,7 +14,7 @@ const customStyles = {
   },
 };
 
-const AlertModal = ({ isOpen, onRequestClose, title, message }) => {
+const AlertModal = ({ isOpen, onRequestClose }) => {
   return (
     <Modal
       isOpen={isOpen}
@@ -23,8 +22,10 @@ const AlertModal = ({ isOpen, onRequestClose, title, message }) => {
       style={customStyles}
       contentLabel="Alert Modal"
     >
-      <h2 className="text-xl font-semibold mb-4">{title}</h2>
-      <p className="text-gray-600">{message}</p>
+      <h2 className="text-xl font-semibold mb-4">Alert</h2>
+      <p className="text-gray-600">
+        Cannot proceed to checkout without selected items.
+      </p>
       <button
         className="mt-4 bg-blue-500 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none"
         onClick={onRequestClose}
@@ -32,28 +33,6 @@ const AlertModal = ({ isOpen, onRequestClose, title, message }) => {
         OK
       </button>
     </Modal>
-  );
-};
-
-export const AlertSuccessModal = ({ isOpen, onRequestClose }) => {
-  return (
-    <AlertModal
-      isOpen={isOpen}
-      onRequestClose={onRequestClose}
-      title="Success"
-      message="Logged in successfully!"
-    />
-  );
-};
-
-export const AlertCheckoutModal = ({ isOpen, onRequestClose }) => {
-  return (
-    <AlertModal
-      isOpen={isOpen}
-      onRequestClose={onRequestClose}
-      title="Alert"
-      message="Cannot proceed to checkout without selected items."
-    />
   );
 };
 

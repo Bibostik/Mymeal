@@ -10,6 +10,10 @@ export default defineConfig({
   projectId: 'xtayjuwp',
   dataset: 'production',
 
+  CORS: [
+    'https://my-meal100.netlify.app/'
+  ],
+
   plugins: [deskTool(), visionTool()],
 
   schema: {

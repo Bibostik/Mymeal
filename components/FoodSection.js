@@ -3,14 +3,17 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import client from '@/sanityClient';
-import { useCart } from '@/app/CartContext'; // Adjust the path
+import { useCart } from '@/CartContext'; // Adjust the path
 
 const FoodSection = () => {
   const [foodItems, setFoodItems] = useState([]);
   const { selectedItems, setSelectedItems } = useCart();
 
-  useEffect(() => {
-    client
+  async function fetchFoodItems(){
+
+    try {
+
+      client
       .fetch(
         `*[_type == "foodItem"]{
           _id,
@@ -24,7 +27,17 @@ const FoodSection = () => {
       )
       .then((data) => setFoodItems(data))
       .catch((error) => console.error('Error fetching food items:', error));
-  }, []);
+
+    }catch(error){
+
+      console.log(error)
+
+    }
+
+  }
+
+  fetchFoodItems()
+
 
   const addToCart = (food) => {
     setSelectedItems([...selectedItems, food]);

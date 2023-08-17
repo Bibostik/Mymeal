@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { MenuIcon } from '@heroicons/react/outline';
 import { MicrophoneIcon, XIcon, ShoppingBagIcon, UserIcon } from '@heroicons/react/solid';
-import { useCart } from '@/app/CartContext'; 
+import { useCart } from '@/CartContext'; 
 import Link from 'next/link';
 
 const Navbar = () => {

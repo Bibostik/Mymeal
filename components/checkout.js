@@ -1,9 +1,26 @@
 "use client"
 import React from 'react';
-import { useCart } from '@/app/CartContext';
+import { useCart } from '@/CartContext';
 import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import { loadStripe } from '@stripe/stripe-js';
+import {PaymentElement} from '@stripe/react-stripe-js';
 
+//const stripePromise = loadStripe("pk_test_51IX8WuJC9t2dpLOucebwh0e0HGQ2oLfFKXYxeDgbma2IWHqW5c5HEkwTKLwbHtPaaVKtonmDu8bZDlPZwBBqltYp00rOJJ9Sty");
+
+{/*}
 const CheckoutPage = () => {
+  const [clientSecret, setClientSecret] = useState('');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch('/api/stripe', { method: 'POST' });
+      const data = await response.json();
+      setClientSecret(data.clientSecret);
+    };
+    fetchData();
+  }, []);
+  
   const { selectedItems } = useCart();
   const router = useRouter();
 
@@ -11,18 +28,33 @@ const CheckoutPage = () => {
     return selectedItems.reduce((total, item) => total + item.price, 0);
   };
 
-  const handlePayment = () => {
-    // Simulate payment processing logic
-    // You can integrate your actual payment processing here
+  // const handlePayment = () => {
+  //   // Simulate payment processing logic
+  //   // You can integrate your actual payment processing here
 
-    // Assuming successful payment
-    console.log('Payment successful! Thank you for your order.');
-    // Clear the cart after successful payment
-    // Clearing the cart can be implemented based on your context logic
-    // cart.clearCart();
+  //   // Assuming successful payment
+  //   console.log('Payment successful! Thank you for your order.');
+  //   // Clear the cart after successful payment
+  //   // Clearing the cart can be implemented based on your context logic
+  //   // cart.clearCart();
 
-    // Redirect user to a thank you page or home page
-    router.push('/thank-you');
+  //   // Redirect user to a thank you page or home page
+  //   router.push('/thank-you');
+  // };
+
+  const handlePayment = async () => {
+    const stripe = await stripePromise;
+    const result = await stripe.confirmCardPayment(clientSecret, {
+      payment_method: {
+        card: elements.getElement(CardElement),
+      },
+    });
+
+    if (result.error) {
+      console.error(result.error.message);
+    } else {
+      // Payment successful
+    }
   };
 
   return (
@@ -55,5 +87,18 @@ const CheckoutPage = () => {
     </div>
   );
 };
+{*/}
 
-export default CheckoutPage;
+
+const CheckoutForm = () => {
+  return (
+    <form>
+      <PaymentElement />
+      <button>Submit</button>
+    </form>
+  );
+};
+
+export default CheckoutForm;
+
+//export default CheckoutPage;
