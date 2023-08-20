@@ -342,6 +342,8 @@ import { HiStar, HiOutlineShare } from 'react-icons/hi';
 import client from '@/sanityClient';
 import { useCart } from '@/app/CartContext'; 
 import { Image } from 'next/image';
+import { FaFacebook, FaTwitter } from 'react-icons/fa';
+
 
 const FoodSection = () => {
   const [foodItems, setFoodItems] = useState([]);
@@ -376,15 +378,12 @@ const FoodSection = () => {
         {foodItems.map((food) => (
           <div key={food._id} className="bg-white p-4 shadow-md rounded-lg hover:shadow-lg hover:shadow-xl transition-shadow">
             {food.slug && (
-              <Link href={`/food/${food.slug.current}`} passHref legacyBehavior>
-                <a className="hover:no-underline">
-                  <Image
+            
+                <div className="hover:no-underline">
+                  <img
                     src={food.image}
                     alt={food.name}
-                    layout="responsive"
-                    width={500}
-                    height={300}
-                    quality={75}
+                   
                     className="w-full h-40 object-cover mb-4 rounded-lg"
                   />
                   <h3 className="text-xl font-bold mb-2">{food.name}</h3>
@@ -395,18 +394,39 @@ const FoodSection = () => {
                     ))}
                   </div>
                   <div className="flex items-center space-x-2">
-                    <button
-                      className="bg-blue-500 text-white font-bold px-4 py-2 rounded-md focus:outline-none"
-                      onClick={() => addToCart(food)}
-                    >
-                      Buy
-                    </button>
-                    <button className="text-blue-500 focus:outline-none">
-                      <HiOutlineShare className="w-5 h-5" />
-                    </button>
-                  </div>
-                </a>
-              </Link>
+                        <button
+                          className="bg-blue-500 text-white font-bold px-4 py-2 rounded-md focus:outline-none"
+                          onClick={() => addToCart(food)}
+                        >
+                          Buy
+                        </button>
+                        <button className="text-blue-500 focus:outline-none">
+                          <HiOutlineShare className="w-5 h-5" />
+                        </button>
+                        <a
+                          href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+                            `${window.location.origin}/foodSinglePage/${food.slug.current}`
+                          )}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-blue-500 focus:outline-none"
+                        >
+                          <FaFacebook className="w-5 h-5" />
+                        </a>
+                        <a
+                          href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(
+                            `${window.location.origin}/foodSinglePage/${food.slug.current}`
+                          )}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-blue-500 focus:outline-none"
+                        >
+                          <FaTwitter className="w-5 h-5" />
+                        </a>
+                      </div>
+
+                </div>
+              
             )}
           </div>
         ))}

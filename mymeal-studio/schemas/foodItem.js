@@ -50,5 +50,12 @@ export default {
         title: 'Food Country Origin',
         type:'string',
       },
+      {
+        name: 'rating',
+        title: 'Rating',
+        type: 'number',
+        validation: Rule => Rule.min(0).max(5),
+      },
+
   ],
 };
