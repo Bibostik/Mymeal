@@ -166,7 +166,7 @@ const CheckoutPage = () => {
       const stripe = await stripePromise;
 
       // Create a Stripe Checkout session here
-      const response = await fetch('pages/api/checkout-sessions', {
+      const response = await fetch('api/checkout-sessions', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -196,7 +196,7 @@ const CheckoutPage = () => {
       <h1 className="text-3xl font-semibold mb-6">Checkout</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Elements stripe={stripePromise}>
-          <form action="pages/api/checkout-sessions" method="POST">
+          <form action="api/checkout-sessions" method="POST">
             {/* Selected items */}
             <div>
               {selectedItems.map((item) => (

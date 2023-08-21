@@ -8,9 +8,9 @@ export default async (req, res) => {
     //console.log(price)
 
     try {
-    const stripe = require('stripe')(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
-    const paymentIntent = await stripe.paymentIntents.create({
-        amount: {price},
+      const stripe = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY);
+      const paymentIntent = await stripe.paymentIntents.create({
+        amount: { price },
         currency: 'usd',
         payment_method_types: ['card'],
       });
@@ -20,7 +20,8 @@ export default async (req, res) => {
       res.status(500).json({ error: error.message });
     }
   } else {
-    res.setHeader('Allow', 'POST');
     res.status(405).end('Method Not Allowed');
   }
+
+  res.setHeader('Allow', 'POST');
 };
