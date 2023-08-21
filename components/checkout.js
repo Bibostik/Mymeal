@@ -234,7 +234,7 @@ const CheckoutPage = () => {
 
     const handleSubmit = async (e) => {
     e.preventDefault();
-
+      console.log('processing')
     if (!stripe || !elements) {
       // Stripe.js hasn't yet loaded.
       // Make sure to disable form submission until Stripe.js has loaded.
@@ -316,7 +316,10 @@ const CheckoutPage = () => {
               <p className="font-semibold">Total:</p>
               <p className="text-gray-600">£{calculateTotal()}</p>
             </div>
-            
+            <div className='p-4'> 
+              <PaymentElement id='payment-element' options={paymentElementOptions}/>
+            </div>
+              
             {/* Proceed to payment button */}
             <button
               className="mt-4 w-full bg-blue-500 text-white font-semibold py-2 rounded-md hover:bg-blue-600 focus:outline-none"
@@ -331,7 +334,7 @@ const CheckoutPage = () => {
             {paymentError && (
               <p className="text-red-500 mt-2">{paymentError}</p>
             )}
-             <PaymentElement id='payment-element' options={paymentElementOptions}/>
+           
           </form>
        
       </div>
