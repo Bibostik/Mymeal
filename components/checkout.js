@@ -247,7 +247,7 @@ const CheckoutPage = () => {
       elements,
       confirmParams: {
         // Make sure to change this to your payment completion page
-        return_url: "http://localhost:3000",
+        return_url: `http://localhost:3000/success?sessionId=${'cbcbsso'}`,
       },
     });
 
@@ -293,10 +293,7 @@ const CheckoutPage = () => {
   return (
     <div className="container mx-auto p-6 h-auto">
       <h1 className="text-3xl font-semibold mb-6">Checkout things</h1>
-      <LinkAuthenticationElement
-        id="link-authentication-element"
-        onChange={(e) => setEmail(e.target.value)}
-      />
+      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
       
           <form >
@@ -317,6 +314,10 @@ const CheckoutPage = () => {
               <p className="text-gray-600">£{calculateTotal()}</p>
             </div>
             <div className='p-4'> 
+            <LinkAuthenticationElement
+              id="link-authentication-element"
+              onChange={(e) => setEmail(e.target.value)}
+            />
               <PaymentElement id='payment-element' options={paymentElementOptions}/>
             </div>
               
@@ -329,12 +330,14 @@ const CheckoutPage = () => {
             >
               {isPaymentProcessing ? 'Processing...' : 'Proceed to Payment'}
             </button>
+
+            
             
             {/* Payment error */}
             {paymentError && (
               <p className="text-red-500 mt-2">{paymentError}</p>
             )}
-           
+          
           </form>
        
       </div>
