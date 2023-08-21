@@ -143,6 +143,12 @@ import { loadStripe } from '@stripe/stripe-js';
 import { useCart } from '@/app/CartContext';
 import { useRouter } from 'next/navigation';
 import { Elements } from '@stripe/react-stripe-js';
+import {
+  PaymentElement,
+  LinkAuthenticationElement,
+  useStripe,
+  useElements
+} from "@stripe/react-stripe-js";
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
@@ -151,52 +157,150 @@ const CheckoutPage = () => {
   const router = useRouter();
   const [isPaymentProcessing, setIsPaymentProcessing] = useState(false);
   const [paymentError, setPaymentError] = useState(null);
-
+  const [email, setEmail] = useState('')
+  const [message, setMessage] = useState('')
   const calculateTotal = () => {
     return selectedItems.reduce((total, item) => total + item.price, 0);
   };
 
-  const handlePayment = async (event) => {
-    event.preventDefault();
+  const stripe = useStripe()
+  const elements = useElements()
 
-    try {
-      setIsPaymentProcessing(true);
-      setPaymentError(null);
+  // const handlePayment = async (event) => {
+  //   event.preventDefault();
+  //   console.log(selectedItems)
+  //   try {
+  //     setIsPaymentProcessing(true);
+  //     setPaymentError(null);
 
-      const stripe = await stripePromise;
+  //     const stripe = await stripePromise;
 
-      // Create a Stripe Checkout session here
-      const response = await fetch('api/checkout-sessions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ items: selectedItems }),
-      });
+  //     // Create a Stripe Checkout session here
+  //     const response = await fetch('api/checkout-sessions', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({ items: selectedItems })
+  //     });
 
-      const session = await response.json();
+  //     const session = await response.json();
 
-      // Redirect to Stripe Checkout
-      const result = await stripe.redirectToCheckout({
-        sessionId: session.id,
-      });
+  //     // Redirect to Stripe Checkout
+  //     const result = await stripe.redirectToCheckout({
+  //       sessionId: session.id,
+  //     });
 
-      if (result.error) {
-        throw new Error(result.error.message);
-      }
-    } catch (error) {
-      console.error('Error processing payment:', error);
-      setPaymentError('An error occurred while processing your payment. Please try again.');
-      setIsPaymentProcessing(false);
+  //     if (result.error) {
+  //       throw new Error(result.error.message);
+  //     }
+  //   } catch (error) {
+  //     console.error('Error processing payment:', error);
+  //     setPaymentError('An error occurred while processing your payment. Please try again.');
+  //     setIsPaymentProcessing(false);
+  //   }
+  // };
+
+    React.useEffect(() => {
+    if (!stripe) {
+      return;
     }
+
+    const clientSecret = new URLSearchParams(window.location.search).get(
+      "payment_intent_client_secret"
+    );
+
+    if (!clientSecret) {
+      return;
+    }
+
+    stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
+      switch (paymentIntent.status) {
+        case "succeeded":
+          setMessage("Payment succeeded!");
+          break;
+        case "processing":
+          setMessage("Your payment is processing.");
+          break;
+        case "requires_payment_method":
+          setMessage("Your payment was not successful, please try again.");
+          break;
+        default:
+          setMessage("Something went wrong.");
+          break;
+      }
+    });
+  }, [stripe]);
+
+    const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!stripe || !elements) {
+      // Stripe.js hasn't yet loaded.
+      // Make sure to disable form submission until Stripe.js has loaded.
+      return;
+    }
+
+    setIsPaymentProcessing(true);
+
+    const { error } = await stripe.confirmPayment({
+      elements,
+      confirmParams: {
+        // Make sure to change this to your payment completion page
+        return_url: "http://localhost:3000",
+      },
+    });
+
+    // This point will only be reached if there is an immediate error when
+    // confirming the payment. Otherwise, your customer will be redirected to
+    // your `return_url`. For some payment methods like iDEAL, your customer will
+    // be redirected to an intermediate site first to authorize the payment, then
+    // redirected to the `return_url`.
+    if (error.type === "card_error" || error.type === "validation_error") {
+      setMessage(error.message);
+    } else {
+      setMessage("An unexpected error occurred.");
+    }
+
+    setIsPaymentProcessing(false);
   };
+
+  const paymentElementOptions = {
+    layout: "tabs",
+  };
+
+
+  // const handleSubmit =async(e) =>{
+  //   e.preventDefault()
+  //   console.log('button fired')
+  //   try{
+  //     const response = await fetch('api/test', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: 'hello world'
+  //     });
+
+  //   }catch(error){
+  //     console.error('Error processing payment:', error);
+  //     setIsPaymentProcessing(false);
+  //   }
+  // }
+
+
 
   return (
     <div className="container mx-auto p-6 h-auto">
-      <h1 className="text-3xl font-semibold mb-6">Checkout</h1>
+      <h1 className="text-3xl font-semibold mb-6">Checkout things</h1>
+      <LinkAuthenticationElement
+        id="link-authentication-element"
+        onChange={(e) => setEmail(e.target.value)}
+      />
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Elements stripe={stripePromise}>
-          <form action="api/checkout-sessions" method="POST">
+      
+          <form >
+           
             {/* Selected items */}
             <div>
               {selectedItems.map((item) => (
@@ -216,7 +320,8 @@ const CheckoutPage = () => {
             {/* Proceed to payment button */}
             <button
               className="mt-4 w-full bg-blue-500 text-white font-semibold py-2 rounded-md hover:bg-blue-600 focus:outline-none"
-              type="submit"
+              // type="submit"
+              onClick={handleSubmit}
               disabled={isPaymentProcessing}
             >
               {isPaymentProcessing ? 'Processing...' : 'Proceed to Payment'}
@@ -226,11 +331,13 @@ const CheckoutPage = () => {
             {paymentError && (
               <p className="text-red-500 mt-2">{paymentError}</p>
             )}
+             <PaymentElement id='payment-element' options={paymentElementOptions}/>
           </form>
-        </Elements>
+       
       </div>
     </div>
   );
 };
 
 export default CheckoutPage;
+
