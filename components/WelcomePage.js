@@ -276,7 +276,7 @@ const WelcomePage = () => {
       {userData ? (
         <div className="flex flex-col items-center justify-center h-screen">
           <div className="text-center">
-            <h1 className="text-3xl font-semibold mb-4">Welcome, {getUserByUsername.currentUser}</h1>
+            <h1 className="text-3xl font-semibold mb-4">Welcome, {userData.currentUser}</h1>
             <p className="mb-4">
               You are now logged in. You can start shopping and adding items to your cart.
             </p>
