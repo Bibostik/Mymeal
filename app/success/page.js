@@ -11,18 +11,6 @@ const Success = () => {
     setSessionId(query.get("sessionId"));
   }, []);
 
-  // useEffect(() => {
-  //   if (sessionId) {
-  //     Stripe.api.getCheckoutSession(sessionId).then(({ data }) => {
-  //       setOrder(data.order);
-  //     });
-  //   }
-  // }, [sessionId]);
-
-  // if (!order) {
-  //   return <div>Loading...</div>;
-  // }
-
   return (
   
       <div className="bg-gray-100 h-screen">
@@ -37,7 +25,7 @@ const Success = () => {
             <p className="text-gray-600 my-2">Thank you for completing your secure online payment.</p>
             <p> Have a great day!  </p>
             <div className="py-10 text-center">
-                <a href="#" className="px-12 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3">
+                <a href="/" className="px-12 bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3">
                     GO HOME 
                </a>
             </div>
