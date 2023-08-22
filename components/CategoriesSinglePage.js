@@ -3,12 +3,7 @@ import React from 'react';
 import client from '@/sanityClient';
 import { useRouter } from 'next/navigation';
 
-
-
-
 const CategorySinglePage = ({ foodItems, category }) => {
- 
-  
   return (
     <div className="container mx-auto mt-10 px-8">
       <h2 className="text-3xl font-bold mb-4">Food Items in {category}</h2>
@@ -30,17 +25,8 @@ const CategorySinglePage = ({ foodItems, category }) => {
   );
 };
 
-export async function getStaticPaths() {
-  const categories = await client.fetch('*[_type == "category"]{ name }');
-  
-  const paths = categories.map((category) => ({
-    params: { category: category.name },
-  }));
-
-  return { paths, fallback: false };
-}
-export async function getStaticProps({ params }) {
-  const { category } = params;
+CategorySinglePage.getInitialProps = async ({ query }) => {
+  const { category } = query;
   console.log('Fetching data for category:', category);
 
   try {
@@ -56,11 +42,12 @@ export async function getStaticProps({ params }) {
     );
     console.log('Fetched food items:', foodItems);
 
-    return { props: { foodItems, category } };
+    return { foodItems, category };
   } catch (error) {
     console.error('Error fetching data:', error);
-    return { props: { foodItems: [], category } };
+    return { foodItems: [], category };
   }
-}
+};
 
 export default CategorySinglePage;
+

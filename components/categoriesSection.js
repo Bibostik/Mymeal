@@ -32,7 +32,7 @@ const CategoriesSection = () => {
       </div>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {visibleCategories.map((category) => (
-          <Link key={category._id} href={`/categoriessingle/${category}`} legacyBehavior>
+          <Link key={category._id} href={`/categoriessingle/${category.name}`} legacyBehavior>
             <a className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg block text-center">
               <h3 className="text-xl font-bold">{category.name}</h3>
             </a>

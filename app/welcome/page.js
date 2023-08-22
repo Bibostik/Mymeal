@@ -22,7 +22,7 @@ export default function Welcome() {
   return (
     <div>
         {
-            isLoading ? <p>Loading .....</p> : <WelcomePage userData={userData}/>
+            isLoading ? <p>Loading .....</p> : <WelcomePage />
         }
         <CartPage/>
         

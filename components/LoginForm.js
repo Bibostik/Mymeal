@@ -195,9 +195,9 @@ const LoginForm = () => {
     setIsAlertOpen(false); 
   };
 
-  // const handleWelcomeClick = () => {
-  //   redirect('/welcome');
-  // };
+  const handleWelcomeClick = () => {
+    redirect('/welcome');
+  };
 
   return (
     <div className="flex items-center justify-center h-auto">
