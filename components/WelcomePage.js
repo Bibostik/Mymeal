@@ -240,36 +240,35 @@
 // export default WelcomePage;
 
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { getUserByUsername } from '@/sanityClient';
 import { useRouter } from 'next/navigation';
-import { getAuth } from 'firebase/auth'; 
+import { getAuth } from '@firebase/auth';
 
+import app from '../firebase'
 
 const WelcomePage = () => {
   const [userData, setUserData] = useState(null);
-  const auth = getAuth(); // Initialize Firebase Auth
+  const auth = getAuth(); // Use the auth instance from your initialized Firebase app
   const router = useRouter();
 
   useEffect(() => {
-    // Get the current user from Firebase Auth
-    const user = auth.currentUser;
-
-    if (!user) {
-      // Redirect to login page if not logged in
-      router.replace('/LoginRegister');
-    } else {
-      
-      getUserByUsername(user.displayName) 
-        .then((data) => {
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        try {
+          const data = await getUserByUsername(user.displayName);
           setUserData(data);
-        })
-        .catch((error) => {
+        } catch (error) {
           console.error('Error fetching user data:', error);
-        });
-    }
-  }, [auth.currentUser]);
+        }
+      } else {
+        router.replace('/LoginRegister');
+      }
+    });
+
+    return unsubscribe;
+  }, [auth, router]);
 
   return (
     <div>
